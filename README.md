@@ -14,4 +14,4 @@ The custom analyst is a deterministic statistical demo, not a trained AI model. 
 
 ## Publish
 
-The site deploys to GitHub Pages with the workflow in `.github/workflows/pages.yml` whenever changes are pushed to `main`. The first workflow run enables GitHub Pages and publishes the static site.
+In the repository's Settings → Pages, choose GitHub Actions as the build and deployment source. The workflow in `.github/workflows/pages.yml` then publishes the static site whenever changes are pushed to `main`.
