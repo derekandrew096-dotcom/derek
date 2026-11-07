@@ -14,4 +14,6 @@ The custom analyst is a deterministic statistical demo, not a trained AI model. 
 
 ## Publish
 
-In the repository's Settings → Pages, choose GitHub Actions as the build and deployment source. The workflow in `.github/workflows/pages.yml` publishes the static site after changes are pushed to `main`. Once the workflow succeeds, GitHub shows the published URL in repository Settings → Pages and in the deployment workflow run.
+In the repository's Settings → Pages, choose GitHub Actions as the build and deployment source. The workflow in `.github/workflows/pages.yml` publishes the static site whenever changes are pushed to `main`.
+
+Expected site URL: https://derekandrew096-dotcom.github.io/derek/
