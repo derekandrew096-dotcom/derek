@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Explore transparent, illustrative American football and soccer match analysis with estimated probabilities and fair odds."
+    />
+    <meta name="theme-color" content="#101511" />
+    <title>Fieldnotes — Football &amp; soccer match analysis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header class="topbar">
+      <a class="brand" href="#home" aria-label="Fieldnotes home">
+        <span class="brand__icon" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none">
+            <path d="M5 23 12 16l5 4 10-12M21 8h6v6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M5 27h22" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".45" />
+          </svg>
+        </span>
+        <span>field<span class="brand__accent">notes</span><small>AI MATCH ANALYST / DEMO</small></span>
+      </a>
+
+      <nav class="main-nav" aria-label="Main navigation">
+        <a class="main-nav__link main-nav__link--active" href="#matchups">Matches</a>
+        <a class="main-nav__link" href="#analyst">AI analyst</a>
+        <a class="main-nav__link" href="#learn">How it works</a>
+        <a class="main-nav__link" href="#about">Limitations</a>
+      </nav>
+
+      <div class="topbar__right">
+        <span class="demo-badge"><span></span> DEMO DATA</span>
+        <button class="saved-toggle" id="saved-toggle" type="button" aria-pressed="false">
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 3.5h10v14l-5-3-5 3v-14Z" /></svg>
+          <span>Saved</span>
+          <span class="saved-count" id="saved-count">0</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="intro page-container" id="home">
+        <div class="intro__copy">
+          <p class="eyebrow"><span class="eyebrow__line"></span> Transparent, data-inspired demo</p>
+          <h1>Match analysis.<br /><span>Without the hype.</span></h1>
+          <p class="intro__text">
+            Explore sample American football and soccer matchups, see the factors behind each estimate, and compare model-implied fair odds.
+          </p>
+        </div>
+        <aside class="notice-card">
+          <span class="notice-card__icon" aria-hidden="true">i</span>
+          <div>
+            <strong>AI-assisted estimates, not guarantees</strong>
+            <p>This local demo has no live data or trained AI service. Sample estimates are illustrative, unverified, and never a promise of accuracy.</p>
+          </div>
+        </aside>
+      </section>
+
+      <section class="board page-container" id="matchups" aria-labelledby="board-title">
+        <div class="board-heading">
+          <div>
+            <div class="board-heading__overline"><span class="board-heading__mark"></span> THE MATCH ANALYSIS BOARD</div>
+            <h2 id="board-title">Explore matchups</h2>
+          </div>
+          <span class="slate-label"><span></span> ILLUSTRATIVE DEMO</span>
+        </div>
+
+        <div class="toolbar">
+          <div class="sport-tabs" role="group" aria-label="Filter matchups by sport">
+            <button class="sport-tab is-active" data-sport="all" type="button" aria-pressed="true">All matches</button>
+            <button class="sport-tab" data-sport="football" type="button" aria-pressed="false"><span aria-hidden="true">◉</span> American football</button>
+            <button class="sport-tab" data-sport="soccer" type="button" aria-pressed="false"><span aria-hidden="true">◉</span> Soccer</button>
+          </div>
+          <label class="search-box">
+            <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.7" cy="8.7" r="5.7" /><path d="m13 13 4 4" /></svg>
+            <input id="matchup-search" type="search" placeholder="Find a team..." autocomplete="off" />
+            <kbd>/</kbd>
+          </label>
+        </div>
+
+        <div class="analysis-bar">
+          <span>MODEL ESTIMATES</span>
+          <span>FAIR ODDS · NO BOOKMAKER MARGIN</span>
+        </div>
+
+        <p class="results-summary" id="results-summary" aria-live="polite"></p>
+        <div class="matchup-list" id="matchup-list" aria-live="polite"></div>
+        <div class="empty-state" id="empty-state" hidden>
+          <span aria-hidden="true">⌕</span>
+          <strong>No matchups found</strong>
+          <p>Try a different team name or sport.</p>
+          <button type="button" id="clear-filters">Clear filters</button>
+        </div>
+
+        <p class="board-footnote"><span aria-hidden="true">ⓘ</span> Fictional teams and sample statistics. Probabilities are illustrative model outputs, not verified forecasts, live odds, or betting advice. No prediction is guaranteed.</p>
+      </section>
+
+      <section class="analyst-section page-container" id="analyst" aria-labelledby="analyst-title">
+        <div class="analyst-heading">
+          <div>
+            <p class="eyebrow"><span class="eyebrow__line"></span> BUILD YOUR OWN ANALYSIS</p>
+            <h2 id="analyst-title">AI match analyst.</h2>
+            <p>Enter each team’s average scoring and conceding stats. The local model turns them into a transparent illustrative estimate.</p>
+          </div>
+          <span class="analyst-local"><span></span> RUNS IN YOUR BROWSER</span>
+        </div>
+        <form class="analyst-form" id="analyst-form">
+          <div class="form-field form-field--sport">
+            <label for="analyst-sport">Sport</label>
+            <select id="analyst-sport" name="sport">
+              <option value="football">American football</option>
+              <option value="soccer">Soccer</option>
+            </select>
+          </div>
+          <div class="form-team">
+            <div class="form-team__heading"><span class="form-team__badge">A</span><h3>Away team</h3></div>
+            <label class="form-field"><span>Team name</span><input name="awayName" required maxlength="40" value="Visitor FC" /></label>
+            <div class="form-team__stats">
+              <label class="form-field"><span class="scoring-label">Points scored / game</span><input name="awayScored" type="number" min="0" max="200" step="0.1" required value="21.4" /></label>
+              <label class="form-field"><span class="conceding-label">Points allowed / game</span><input name="awayAllowed" type="number" min="0" max="200" step="0.1" required value="19.8" /></label>
+            </div>
+          </div>
+          <div class="form-team">
+            <div class="form-team__heading"><span class="form-team__badge form-team__badge--home">H</span><h3>Home team</h3></div>
+            <label class="form-field"><span>Team name</span><input name="homeName" required maxlength="40" value="Home United" /></label>
+            <div class="form-team__stats">
+              <label class="form-field"><span class="scoring-label">Points scored / game</span><input name="homeScored" type="number" min="0" max="200" step="0.1" required value="23.6" /></label>
+              <label class="form-field"><span class="conceding-label">Points allowed / game</span><input name="homeAllowed" type="number" min="0" max="200" step="0.1" required value="20.2" /></label>
+            </div>
+          </div>
+          <button class="analyst-submit" type="submit">Analyze this matchup <span aria-hidden="true">↗</span></button>
+        </form>
+        <p class="analyst-error" id="analyst-error" role="alert" hidden></p>
+        <div class="analyst-result" id="analyst-result" aria-live="polite" hidden>
+          <div class="analyst-result__heading"><span class="board-heading__mark"></span> YOUR MODEL ANALYSIS <button type="button" id="clear-analysis">Clear</button></div>
+          <div id="analyst-result-card"></div>
+        </div>
+        <p class="analyst-disclaimer">Demo only: this is a basic statistical calculation, not a trained or validated AI system. Entered averages are treated as representative inputs; no schedules, injuries, lineups, or live statistics are checked. Estimates can be wrong.</p>
+      </section>
+
+      <section class="learn-section" id="learn">
+        <div class="learn-inner page-container">
+          <div class="learn-intro">
+            <p class="eyebrow"><span class="eyebrow__line"></span> THE QUICK EXPLAINER</p>
+            <h2>How the<br />estimates work.</h2>
+            <p>These lightweight examples use only the sample team metrics shown on each card. They demonstrate a method, not a validated prediction system.</p>
+          </div>
+          <div class="learn-cards">
+            <article class="learn-card">
+              <span class="learn-card__number">01 / AMERICAN FOOTBALL</span>
+              <h3>Scoring baseline</h3>
+              <p>Expected points blend each team’s points scored with its opponent’s points allowed. A small home-field adjustment is applied, then a logistic curve converts the expected margin to win probability.</p>
+              <div class="learn-example"><span>INPUTS</span><strong>Points scored <i>per game</i></strong><strong>Points allowed <i>per game</i></strong></div>
+            </article>
+            <article class="learn-card">
+              <span class="learn-card__number">02 / SOCCER</span>
+              <h3>Goals &amp; draws</h3>
+              <p>Expected goals combine attack and opponent-concession rates. A Poisson score model estimates home-win, draw, and away-win probabilities across possible scorelines.</p>
+              <div class="learn-example"><span>INPUTS</span><strong>Goals scored <i>per game</i></strong><strong>Goals conceded <i>per game</i></strong></div>
+            </article>
+            <article class="learn-card">
+              <span class="learn-card__number">03 / FAIR ODDS</span>
+              <h3>Probability, inverted</h3>
+              <p>Fair decimal odds are the inverse of estimated probability. American odds are converted from that estimate. These omit bookmaker margin and are not market quotes.</p>
+              <div class="learn-example"><span>EXAMPLE</span><strong>50% <i>2.00 decimal</i></strong><strong>50% <i>+100 American</i></strong></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="about-section page-container" id="about">
+        <div class="about-section__mark" aria-hidden="true">↗</div>
+        <div><p class="eyebrow"><span class="eyebrow__line"></span> KNOW THE LIMITS</p><h2>Useful estimates.<br /><span>No guarantees.</span></h2></div>
+        <div class="about-section__copy">
+          <p>A claimed 99% hit rate would require rigorous evidence across a large, independent, out-of-sample test set. This demo has no such validation and deliberately makes no accuracy claim.</p>
+          <p class="about-section__responsible">Real match outcomes are uncertain. Model estimates can be wrong, sample data can be misleading, and fair odds are not bookmaker odds.</p>
+          <a href="#matchups">Back to matches <span aria-hidden="true">↑</span></a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <a class="brand brand--footer" href="#home">
+        <span class="brand__icon" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none">
+            <path d="M5 23 12 16l5 4 10-12M21 8h6v6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M5 27h22" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".45" />
+          </svg>
+        </span>
+        <span>field<span class="brand__accent">notes</span><small>AI MATCH ANALYST / DEMO</small></span>
+      </a>
+      <span class="footer__note">Illustrative model · no accuracy guarantee · no live data</span>
+      <a class="footer__top" href="#home">BACK TO TOP ↑</a>
+    </footer>
+  </body>
+</html>
